@@ -13,6 +13,7 @@
 
         let lastSentTime = 0; // Track the last sent time
         const cooldownTime = 30000; // 30 seconds in milliseconds
+        let timeoutId; // To store the timeout ID for the timer
 
         function sendEmail(event) {
             event.preventDefault(); // Prevent default form submission
@@ -29,21 +30,26 @@
             const userEmail = document.getElementById('email').value; // Get the user's email
             const messageContent = document.getElementById('message').value; // Get the user's message
 
+            // Check if values are captured correctly
+            console.log("User Email:", userEmail);
+            console.log("Message Content:", messageContent);
+
             const templateParams = {
                 to_email: userEmail,    // User's email (recipient)
                 from_email: userEmail,  // User's email (sender)
                 message: messageContent, // User's message
-                reply_to: userEmail,    // Set the reply-to field
+                reply_to: userEmail,     // Set the reply-to field
             };
 
+            // Set sending flag to true and disable the button
             const sendButton = document.getElementById('send-button');
-            sendButton.disabled = true; // Disable the button during sending
+            sendButton.disabled = true;
 
             // Send email
             emailjs.send('Test', 'template_k1k0dm1', templateParams)
                 .then(function(response) {
                     console.log('Email sent successfully!', response);
-                    showConfirmationMessage(); // Show success message
+                    showConfirmationMessage(); // Call to show success message
 
                     lastSentTime = new Date().getTime(); // Update the last sent time
 
@@ -62,11 +68,14 @@
         function showConfirmationMessage() {
             const confirmationMessage = document.getElementById('confirmation-message');
             confirmationMessage.style.display = 'block'; // Show confirmation message
-            confirmationMessage.classList.add('slide-down'); // Trigger slide down animation
-            
-            setTimeout(() => {
-                confirmationMessage.classList.remove('slide-down'); // Remove animation class after showing
-            }, 3000); // Duration to show message
+            confirmationMessage.classList.add('slide-down'); // Add animation class
+            clearTimeout(timeoutId); // Clear previous timeout
+
+            // Hide message after 5 seconds
+            timeoutId = setTimeout(() => {
+                confirmationMessage.style.display = 'none'; // Hide message
+                confirmationMessage.classList.remove('slide-down'); // Remove animation class
+            }, 5000);
         }
 
         function showWaitMessage(remainingTime) {
@@ -74,19 +83,24 @@
             waitMessage.textContent = `Please wait ${remainingTime} seconds before sending another message.`;
             waitMessage.style.display = 'block'; // Show wait message
 
-            setTimeout(() => {
-                waitMessage.style.display = 'none'; // Hide wait message after 3 seconds
-            }, 3000); // Adjust duration as needed
+            // Hide the message after 5 seconds
+            clearTimeout(timeoutId); // Clear previous timeout
+            timeoutId = setTimeout(() => {
+                waitMessage.style.display = 'none'; // Hide wait message
+            }, 5000);
         }
     </script>
 </head>
 <body>
-    <div id="confirmation-message" class="message" style="display:none;">✔️ Email sent successfully!</div>
-    <div id="wait-message" class="message" style="display:none;"></div>
-    <form onsubmit="sendEmail(event)">
-        <input type="email" id="email" placeholder="Enter your email" required />
-        <textarea id="message" placeholder="Enter your message" required></textarea>
-        <button id="send-button" type="submit">Send Email</button>
-    </form>
+    <div class="container">
+        <h1>Email Sending Form</h1>
+        <form onsubmit="sendEmail(event)">
+            <input type="email" id="email" placeholder="Enter your email" required />
+            <textarea id="message" placeholder="Enter your message" required></textarea>
+            <button id="send-button" type="submit">Send Email</button>
+        </form>
+        <div id="confirmation-message" class="message" style="display:none;">✔️ Email sent successfully!</div>
+        <div id="wait-message" class="message" style="display:none;"></div>
+    </div>
 </body>
 </html>
