@@ -1,121 +1,52 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #6a5acd, #4A90E2, #00c4ff, #ff3c78); /* Multi-colored gradient */
-    color: #333;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #6a5acd, #00bfff); /* Multi-color background */
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
 }
 
 .container {
-    background-color: #ffffff;
+    background: rgba(255, 255, 255, 0.1); /* Slightly transparent white */
     border-radius: 10px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    padding: 40px;
-    max-width: 600px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
     width: 100%;
-    animation: fadeIn 0.5s; /* Animation for form appearance */
-}
-
-h1 {
     text-align: center;
+}
+
+h2 {
     margin-bottom: 20px;
-    font-size: 2.5rem;
-    color: #4A90E2; /* Nice blue color for header */
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input[type="email"],
-textarea {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    margin-bottom: 20px;
-    font-size: 1rem;
-    transition: border-color 0.3s; /* Smooth transition for border color */
-}
-
-input[type="email"]:focus,
-textarea:focus {
-    border-color: #4A90E2; /* Focus color */
-    outline: none;
+input[type="email"], textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
 }
 
 button {
-    background-color: #6a5acd; /* Button color */
-    color: white;
+    background-color: #00bfff;
+    color: #fff;
+    padding: 12px;
     border: none;
-    border-radius: 4px;
-    padding: 15px;
-    font-size: 1.2rem;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 16px;
 }
 
 button:hover {
-    background-color: #5b4cb1; /* Darker purple on hover */
+    background-color: #009ac1;
 }
 
-/* Keyframe animation for form appearance */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Confirmation message styles */
-.confirmation {
-    display: none; /* Hidden by default */
-    align-items: center;
-    justify-content: center;
-    background-color: #d4edda; /* Light green background */
-    color: #155724; /* Dark green text */
-    border: 1px solid #c3e6cb; /* Green border */
-    border-radius: 5px;
-    padding: 10px;
+#confirmation-message {
     margin-top: 20px;
-    font-size: 1.2rem;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.confirmation.show {
-    opacity: 1; /* Fade-in effect */
-}
-
-/* Checkmark icon style */
-.checkmark {
-    margin-right: 10px;
-    font-size: 1.5rem; /* Size of the checkmark */
-}
-
-@media (max-width: 600px) {
-    .container {
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
+    font-size: 16px;
+    display: none; /* Hide by default */
 }
