@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        (function() {
+        (function(){
             emailjs.init('Cy7XLzuKiesb8tEG2'); // Initialize with your User ID
         })();
 
         let lastSentTime = 0; // Track the last sent time
         const cooldownTime = 30000; // 30 seconds in milliseconds
+        let cooldownTimeout; // Store the timeout
 
         function sendEmail(event) {
             event.preventDefault(); // Prevent default form submission
@@ -22,7 +23,7 @@
             // Check if the cooldown period is active
             if (currentTime - lastSentTime < cooldownTime) {
                 const remainingTime = Math.ceil((cooldownTime - (currentTime - lastSentTime)) / 1000); // Calculate remaining time in seconds
-                showWaitMessage(remainingTime);
+                showWaitMessage(`Please wait ${remainingTime} seconds before sending another message.`);
                 return;
             }
 
@@ -33,25 +34,20 @@
                 to_email: userEmail,    // User's email (recipient)
                 from_email: userEmail,  // User's email (sender)
                 message: messageContent, // User's message
-                reply_to: userEmail,     // Set the reply-to field
+                reply_to: userEmail,    // Set the reply-to field
             };
 
+            // Disable send button
             const sendButton = document.getElementById('send-button');
             sendButton.disabled = true;
 
             // Send email
-            emailjs.send('Test', 'template_k1k0dm1', templateParams)
+            emailjs.send('Test', 'template_x0uf336', templateParams)
                 .then(function(response) {
                     console.log('Email sent successfully!', response);
                     showConfirmationMessage(); // Show success message
-
-                    lastSentTime = new Date().getTime(); // Update the last sent time
-
-                    // Re-enable the button after cooldown time
-                    setTimeout(() => {
-                        sendButton.disabled = false; // Re-enable the button
-                    }, cooldownTime);
-
+                    lastSentTime = currentTime; // Update the last sent time
+                    setTimeout(() => { sendButton.disabled = false; }, cooldownTime); // Re-enable button after cooldown
                 }, function(error) {
                     console.error('Error sending email:', error);
                     alert('Error sending email: ' + JSON.stringify(error));
@@ -62,31 +58,38 @@
         function showConfirmationMessage() {
             const confirmationMessage = document.getElementById('confirmation-message');
             confirmationMessage.style.display = 'block'; // Show confirmation message
-            confirmationMessage.classList.add('fade-in'); // Add animation class
+            confirmationMessage.style.animation = 'slideDown 1s ease';
+
+            // Hide confirmation message after 5 seconds
             setTimeout(() => {
-                confirmationMessage.style.display = 'none'; // Hide after a few seconds
-            }, 5000); // Adjust duration as needed
+                confirmationMessage.style.display = 'none';
+            }, 5000);
         }
 
-        function showWaitMessage(remainingTime) {
+        function showWaitMessage(message) {
             const waitMessage = document.getElementById('wait-message');
-            waitMessage.innerText = `Please wait ${remainingTime} seconds before sending another message.`;
-            waitMessage.style.display = 'block'; // Show wait message
-            setTimeout(() => {
-                waitMessage.style.display = 'none'; // Hide after 5 seconds
-            }, 5000); // Adjust duration as needed
+            waitMessage.innerText = message;
+            waitMessage.style.display = 'block';
+            
+            // Clear previous timeout if any
+            if (cooldownTimeout) clearTimeout(cooldownTimeout);
+
+            cooldownTimeout = setTimeout(() => {
+                waitMessage.style.display = 'none';
+            }, 3000); // Hide wait message after 3 seconds
         }
     </script>
 </head>
 <body>
     <div class="container">
-        <form onsubmit="sendEmail(event)" class="email-form">
+        <h1>Send an Email</h1>
+        <form class="email-form" onsubmit="sendEmail(event)">
             <input type="email" id="email" placeholder="Enter your email" required />
             <textarea id="message" placeholder="Enter your message" required></textarea>
-            <button id="send-button" type="submit">Send Email</button> <!-- Added ID for button -->
+            <button id="send-button" type="submit">Send Email</button>
         </form>
-        <div id="confirmation-message" class="message" style="display:none;">✔️ Email sent successfully!</div>
-        <div id="wait-message" class="message" style="display:none;"></div>
+        <div id="confirmation-message" class="message">✔️ Email sent successfully!</div>
+        <div id="wait-message" class="message">Please wait...</div>
     </div>
 </body>
 </html>
