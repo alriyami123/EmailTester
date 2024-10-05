@@ -3,40 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Sending Form</title>
+    <title>Email Sending Test</title>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script type="text/javascript">
         (function(){
-            emailjs.init("Cy7XLzuKiesb8tEG2"); // Replace with your EmailJS User ID
+            emailjs.init("Cy7XLzuKiesb8tEG2"); // Replace with your actual User ID
         })();
         
-        function sendEmail(event) {
-            event.preventDefault();
-
+        function sendEmail() {
             const templateParams = {
-                to_email: document.getElementById('email').value,
-                message: document.getElementById('message').value,
+                to_email: 'recipient@example.com', // Change to a valid recipient email for testing
+                message: 'This is a test message!', // Sample message
             };
 
-            emailjs.send('Test', 'template_x0uf336', templateParams)
+            emailjs.send('Test', 'template_x0uf336', templateParams) // Use "Test" as the Service ID
                 .then(function(response) {
-                    alert('Email sent successfully!');
+                    console.log('Email sent successfully!', response);
                 }, function(error) {
-                    alert('Error sending email: ' + JSON.stringify(error));
+                    console.error('Error sending email:', error);
                 });
         }
+
+        // Call sendEmail function for testing
+        window.onload = sendEmail;
     </script>
 </head>
 <body>
-    <h1>Send an Email</h1>
-    <form id="email-form" onsubmit="sendEmail(event)">
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
-        <br>
-        <button type="submit">Send Email</button>
-    </form>
+    <h1>EmailJS Test</h1>
 </body>
 </html>
