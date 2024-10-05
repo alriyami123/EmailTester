@@ -11,14 +11,18 @@
             emailjs.init('Cy7XLzuKiesb8tEG2'); // Initialize with your User ID
         })();
 
-        let isSending = false; // Flag to check if an email is being sent
+        let lastSentTime = 0; // Track the last sent time
+        const cooldownTime = 30000; // 30 seconds in milliseconds
 
         function sendEmail(event) {
             event.preventDefault(); // Prevent default form submission
 
-            // Prevent sending if already sending
-            if (isSending) {
-                alert("Please wait 30 seconds before sending another message.");
+            const currentTime = new Date().getTime(); // Get the current time
+
+            // Check if the cooldown period is active
+            if (currentTime - lastSentTime < cooldownTime) {
+                const remainingTime = Math.ceil((cooldownTime - (currentTime - lastSentTime)) / 1000); // Calculate remaining time in seconds
+                alert(`Please wait ${remainingTime} seconds before sending another message.`);
                 return;
             }
 
@@ -37,7 +41,6 @@
             };
 
             // Set sending flag to true and disable the button
-            isSending = true;
             const sendButton = document.getElementById('send-button');
             sendButton.disabled = true;
 
@@ -46,17 +49,17 @@
                 .then(function(response) {
                     console.log('Email sent successfully!', response);
                     showConfirmationMessage(); // Call to show success message
-                    
-                    // Re-enable the button after 30 seconds
+
+                    lastSentTime = new Date().getTime(); // Update the last sent time
+
+                    // Re-enable the button after cooldown time
                     setTimeout(() => {
-                        isSending = false; // Reset the sending flag
                         sendButton.disabled = false; // Re-enable the button
-                    }, 30000); // 30000 milliseconds = 30 seconds
+                    }, cooldownTime);
 
                 }, function(error) {
                     console.error('Error sending email:', error);
                     alert('Error sending email: ' + JSON.stringify(error));
-                    isSending = false; // Reset the flag on error
                     sendButton.disabled = false; // Re-enable the button on error
                 });
         }
