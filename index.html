@@ -8,48 +8,39 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
         (function(){
-            emailjs.init('Cy7XLzuKiesb8tEG2'); // Initialize with your User ID
+            emailjs.init('Cy7XLzuKiesb8tEG2'); // Your User ID
         })();
 
         function sendEmail(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const userEmail = document.getElementById('email').value; // Get the user's email
-            const messageContent = document.getElementById('message').value; // Get the user's message
-
-            // Check if values are captured correctly
-            console.log("User Email:", userEmail);
-            console.log("Message Content:", messageContent);
+            event.preventDefault();
+            const userEmail = document.getElementById('email').value;
+            const messageContent = document.getElementById('message').value;
 
             const templateParams = {
-                to_email: userEmail,    // User's email (recipient)
-                from_email: userEmail,  // User's email (sender)
-                message: messageContent, // User's message
+                to_email: userEmail,
+                from_email: userEmail,
+                message: messageContent,
             };
 
-            // Send email
             emailjs.send('Test', 'template_x0uf336', templateParams)
                 .then(function(response) {
                     console.log('Email sent successfully!', response);
-                    showConfirmationMessage(); // Call to show success message
+                    document.getElementById('confirmation-message').style.display = 'block';
                 }, function(error) {
                     console.error('Error sending email:', error);
-                    alert('Error sending email: ' + JSON.stringify(error));
                 });
-        }
-
-        function showConfirmationMessage() {
-            const confirmationMessage = document.getElementById('confirmation-message');
-            confirmationMessage.style.display = 'block'; // Show confirmation message
         }
     </script>
 </head>
 <body>
-    <form onsubmit="sendEmail(event)">
-        <input type="email" id="email" placeholder="Enter your email" required />
-        <textarea id="message" placeholder="Enter your message" required></textarea>
-        <button type="submit">Send Email</button>
-    </form>
-    <div id="confirmation-message" style="display:none;">✔️ Email sent successfully!</div>
+    <div class="container">
+        <form onsubmit="sendEmail(event)">
+            <h2>Send Email</h2>
+            <input type="email" id="email" placeholder="Enter your email" required />
+            <textarea id="message" placeholder="Enter your message" required></textarea>
+            <button type="submit">Send Email</button>
+        </form>
+        <div id="confirmation-message" class="confirmation-message" style="display: none;">✔️ Email sent successfully!</div>
+    </div>
 </body>
 </html>
