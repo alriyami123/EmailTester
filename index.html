@@ -36,15 +36,14 @@
                 reply_to: userEmail,    // Set the reply-to field
             };
 
-            // Set sending flag to true and disable the button
             const sendButton = document.getElementById('send-button');
-            sendButton.disabled = true;
+            sendButton.disabled = true; // Disable the button during sending
 
             // Send email
             emailjs.send('Test', 'template_k1k0dm1', templateParams)
                 .then(function(response) {
                     console.log('Email sent successfully!', response);
-                    showConfirmationMessage(); // Call to show success message
+                    showConfirmationMessage(); // Show success message
 
                     lastSentTime = new Date().getTime(); // Update the last sent time
 
@@ -63,40 +62,31 @@
         function showConfirmationMessage() {
             const confirmationMessage = document.getElementById('confirmation-message');
             confirmationMessage.style.display = 'block'; // Show confirmation message
-            confirmationMessage.classList.add('fade-in'); // Add fade-in animation
-
+            confirmationMessage.classList.add('slide-down'); // Trigger slide down animation
+            
             setTimeout(() => {
-                confirmationMessage.classList.remove('fade-in'); // Remove fade-in animation
-                confirmationMessage.style.display = 'none'; // Hide message after timeout
-            }, 3000); // Adjust the timeout as needed
+                confirmationMessage.classList.remove('slide-down'); // Remove animation class after showing
+            }, 3000); // Duration to show message
         }
 
         function showWaitMessage(remainingTime) {
             const waitMessage = document.getElementById('wait-message');
             waitMessage.textContent = `Please wait ${remainingTime} seconds before sending another message.`;
             waitMessage.style.display = 'block'; // Show wait message
-            waitMessage.classList.add('fade-in'); // Add fade-in animation
 
             setTimeout(() => {
-                waitMessage.classList.remove('fade-in'); // Remove fade-in animation
-            }, 300); // Time to fade-out effect
-
-            // Automatically hide the wait message after 3 seconds
-            setTimeout(() => {
-                waitMessage.style.display = 'none'; // Hide wait message after timeout
-            }, 3000); // Adjust the timeout as needed
+                waitMessage.style.display = 'none'; // Hide wait message after 3 seconds
+            }, 3000); // Adjust duration as needed
         }
     </script>
 </head>
 <body>
-    <div class="container">
-        <form onsubmit="sendEmail(event)">
-            <input type="email" id="email" placeholder="Enter your email" required />
-            <textarea id="message" placeholder="Enter your message" required></textarea>
-            <button id="send-button" type="submit">Send Email</button> <!-- Added ID for button -->
-        </form>
-        <div id="confirmation-message" class="message" style="display:none;">✔️ Email sent successfully!</div>
-        <div id="wait-message" class="message" style="display:none;"></div>
-    </div>
+    <div id="confirmation-message" class="message" style="display:none;">✔️ Email sent successfully!</div>
+    <div id="wait-message" class="message" style="display:none;"></div>
+    <form onsubmit="sendEmail(event)">
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <textarea id="message" placeholder="Enter your message" required></textarea>
+        <button id="send-button" type="submit">Send Email</button>
+    </form>
 </body>
 </html>
