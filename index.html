@@ -45,14 +45,11 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <form onsubmit="sendEmail(event)">
-            <h2>Send Email</h2>
-            <input type="email" id="email" placeholder="Enter your email" required />
-            <textarea id="message" placeholder="Enter your message" required></textarea>
-            <button type="submit">Send Email</button>
-        </form>
-        <div id="confirmation-message" class="confirmation-message">✔️ Email sent successfully!</div>
-    </div>
+    <form onsubmit="sendEmail(event)">
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <textarea id="message" placeholder="Enter your message" required></textarea>
+        <button type="submit">Send Email</button>
+    </form>
+    <div id="confirmation-message" style="display:none;">✔️ Email sent successfully!</div>
 </body>
 </html>
