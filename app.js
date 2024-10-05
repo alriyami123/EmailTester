@@ -3,7 +3,7 @@ function sendEmail(event) {
 
     const userEmail = document.getElementById('email').value; // Get user email
     const templateParams = {
-        to_email: userEmail, // User's email
+        to_email: userEmail, // User's email (recipient)
         from_email: userEmail, // Set the sender email to the user's email
         message: document.getElementById('message').value, // User's message
     };
