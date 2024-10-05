@@ -1,33 +1,51 @@
 body {
-    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Purple and blue gradient background */
     margin: 0;
     padding: 0;
-    height: 100vh;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Dark text color for contrast */
 }
 
-form {
-    background-color: #f7f7f7; /* Light grey for form background */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.email-form {
+    background-color: white; /* White background for form */
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 400px;
-    max-width: 100%;
     text-align: center;
+}
+
+.email-form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #6a11cb; /* Purple for header */
 }
 
 input[type="email"],
 textarea {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 2px solid #6a11cb; /* Border color matches theme */
     border-radius: 5px;
     font-size: 16px;
-    color: black; /* Text color set to black */
+    transition: border-color 0.3s;
+}
+
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #2575fc; /* Blue border on focus */
+    outline: none; /* Remove default outline */
 }
 
 textarea {
@@ -36,40 +54,23 @@ textarea {
 }
 
 button {
-    background-color: #4CAF50; /* Green button */
+    background-color: #6a11cb; /* Purple button */
     color: white;
-    padding: 10px 20px;
+    padding: 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     width: 100%;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #45a049; /* Darker green when hovering */
+    background-color: #2575fc; /* Blue when hovering */
 }
 
-#confirmation-message {
+.confirmation-message {
     display: none;
     margin-top: 20px;
     font-size: 18px;
-    color: #28a745; /* Green for success */
-    background-color: #d4edda; /* Light green background */
-    border-left: 5px solid #28a745;
-    padding: 15px;
-    border-radius: 5px;
-    animation: slideDown 0.5s ease-out;
-}
-
-/* Animation for the confirmation message */
-@keyframes slideDown {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
+    color: #28a745
