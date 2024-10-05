@@ -1,82 +1,80 @@
-/* styles.css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
     font-family: Arial, sans-serif;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
-    margin: 0;
-    background: linear-gradient(to right, #4b6cb7, #182848); /* Multi-color background */
-    color: white;
+    background: linear-gradient(135deg, #a3c2f2, #ff9a9e);
+}
+
+.container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 300px;
 }
 
-input, textarea, button {
-    width: 100%;
-    margin: 10px 0;
+input[type="email"],
+textarea {
+    margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
-    border: none;
+    border: 1px solid #ccc;
     font-size: 16px;
 }
 
 button {
-    background-color: #28a745;
+    padding: 10px;
+    background-color: #4CAF50;
     color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #45a049;
+}
+
+.message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    animation-duration: 0.5s;
 }
 
 #confirmation-message {
-    margin-top: 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-    animation: fadeIn 0.5s; /* Fade-in effect */
+    background-color: #dff0d8; /* Light green */
+    color: #3c763d; /* Dark green */
 }
 
-#confirmation-text {
-    font-size: 20px;
-    font-weight: bold;
-    color: #4caf50; /* Green color */
-    margin-bottom: 10px;
+#wait-message {
+    background-color: #f2dede; /* Light red */
+    color: #a94442; /* Dark red */
 }
 
-#progress-container {
-    width: 100%;
-    height: 5px;
-    background-color: #ddd; /* Light gray background */
-    border-radius: 5px;
-    overflow: hidden; /* To hide the overflow */
-}
-
-#progress-bar {
-    height: 100%;
-    width: 0; /* Start with width 0 */
-    background-color: #4caf50; /* Green progress bar */
-    transition: width 0.3s ease-in-out; /* Smooth transition for the progress bar */
+/* Animation for fade-in */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
