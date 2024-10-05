@@ -36,7 +36,6 @@
                 reply_to: userEmail,     // Set the reply-to field
             };
 
-            // Set sending flag to true and disable the button
             const sendButton = document.getElementById('send-button');
             sendButton.disabled = true;
 
@@ -63,32 +62,27 @@
         function showConfirmationMessage() {
             const confirmationMessage = document.getElementById('confirmation-message');
             confirmationMessage.style.display = 'block'; // Show confirmation message
-            confirmationMessage.classList.add('slide-down'); // Add slide down effect
-            setTimeout(() => {
-                confirmationMessage.classList.remove('slide-down'); // Remove slide down effect after some time
-            }, 5000); // Hide after 5 seconds
         }
 
-        function showWaitMessage(remainingTime) {
+        function showWaitMessage(seconds) {
             const waitMessage = document.getElementById('wait-message');
-            waitMessage.textContent = `Please wait ${remainingTime} seconds before sending another message.`;
+            waitMessage.textContent = `Please wait ${seconds} seconds before sending another message.`;
             waitMessage.style.display = 'block'; // Show wait message
             setTimeout(() => {
-                waitMessage.style.display = 'none'; // Hide wait message after 5 seconds
-            }, 5000); // Hide after 5 seconds
+                waitMessage.style.display = 'none'; // Hide wait message after 3 seconds
+            }, 3000);
         }
     </script>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Sending Message</h1>
         <form onsubmit="sendEmail(event)">
             <input type="email" id="email" placeholder="Enter your email" required />
             <textarea id="message" placeholder="Enter your message" required></textarea>
             <button id="send-button" type="submit">Send Email</button> <!-- Added ID for button -->
         </form>
-        <div id="confirmation-message" class="confirmation-message" style="display:none;">✔️ Email sent successfully!</div>
-        <div id="wait-message" class="wait-message" style="display:none;"></div>
+        <div id="confirmation-message" class="message" style="display:none;">✔️ Email sent successfully!</div>
+        <div id="wait-message" class="message" style="display:none;"></div>
     </div>
 </body>
 </html>
