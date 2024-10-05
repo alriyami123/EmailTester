@@ -21,10 +21,19 @@
 
             emailjs.send('Test', 'template_x0uf336', templateParams)
                 .then(function(response) {
-                    alert('Email sent successfully!');
+                    showConfirmationMessage();
                 }, function(error) {
                     alert('Error sending email: ' + JSON.stringify(error));
                 });
+        }
+
+        function showConfirmationMessage() {
+            const confirmation = document.getElementById('confirmation');
+            confirmation.style.display = 'block';
+            confirmation.classList.add('show');
+            setTimeout(() => {
+                confirmation.classList.remove('show');
+            }, 3000); // Hide after 3 seconds
         }
     </script>
 </head>
@@ -40,6 +49,10 @@
             <br>
             <button type="submit">Send Email</button>
         </form>
+        <div id="confirmation" class="confirmation">
+            <span class="checkmark">✔️</span>
+            <span>Email sent successfully!</span>
+        </div>
     </div>
 </body>
 </html>
