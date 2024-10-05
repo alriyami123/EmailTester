@@ -28,7 +28,7 @@
             };
 
             // Send email
-            emailjs.send('Test', 'template_k1k0dm1', templateParams)
+            emailjs.send('Test', 'template_x0uf336', templateParams)
                 .then(function(response) {
                     console.log('Email sent successfully!', response);
                     showConfirmationMessage(); // Call to show success message
@@ -45,11 +45,14 @@
     </script>
 </head>
 <body>
-    <form onsubmit="sendEmail(event)">
-        <input type="email" id="email" placeholder="Enter your email" required />
-        <textarea id="message" placeholder="Enter your message" required></textarea>
-        <button type="submit">Send Email</button>
-    </form>
-    <div id="confirmation-message" style="display:none;">✔️ Email sent successfully!</div>
+    <div class="container">
+        <form onsubmit="sendEmail(event)">
+            <h2>Send Email</h2>
+            <input type="email" id="email" placeholder="Enter your email" required />
+            <textarea id="message" placeholder="Enter your message" required></textarea>
+            <button type="submit">Send Email</button>
+        </form>
+        <div id="confirmation-message" style="display:none;">✔️ Email sent successfully!</div>
+    </div>
 </body>
 </html>
