@@ -2,21 +2,34 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #ffffff, #6a11cb, #2575fc, #ff7e5f, #feb47b); /* White to purple, blue, orange, red */
+    background: linear-gradient(to bottom, white, orange); /* Orange and white background */
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: fadeIn 1s ease; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .container {
     background: white; /* White background for the form */
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     padding: 40px;
     width: 90%;
     max-width: 500px;
     text-align: center;
+    transform: translateY(20px);
+    animation: slideUp 0.5s ease forwards; /* Slide-up animation for the container */
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 form {
@@ -29,28 +42,46 @@ textarea {
     margin-bottom: 20px;
     padding: 15px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 16px;
     color: black; /* Black text for the input */
+    transition: border-color 0.3s ease; /* Smooth border transition */
+}
+
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #ff8c00; /* Change border color on focus */
+    outline: none; /* Remove outline */
 }
 
 button {
-    background-color: #2575fc; /* Button color */
+    background-color: #ff8c00; /* Button color */
     color: white; /* Button text color */
     border: none;
     padding: 15px;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Button hover effects */
 }
 
 button:hover {
-    background-color: #6a11cb; /* Darken button color on hover */
+    background-color: #ff5e00; /* Darken button color on hover */
+    transform: scale(1.05); /* Slightly enlarge button */
 }
 
 .message {
     margin-top: 20px;
     font-size: 18px;
-    color: #2575fc; /* Color for confirmation and wait messages */
+    color: #ff8c00; /* Color for confirmation and wait messages */
+    opacity: 0;
+    animation: fadeIn 0.5s forwards; /* Fade-in animation for messages */
+}
+
+#confirmation-message {
+    display: none; /* Hide initially */
+}
+
+#wait-message {
+    display: none; /* Hide initially */
 }
