@@ -1,71 +1,87 @@
 body {
-    background: linear-gradient(135deg, orange, white);
-    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, white, orange); /* Orange and white background */
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: fadeIn 1s ease; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .container {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: white; /* White background for the form */
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 90%;
+    max-width: 500px;
     text-align: center;
-    width: 400px; /* Set a specific width for the form */
+    transform: translateY(20px);
+    animation: slideUp 0.5s ease forwards; /* Slide-up animation for the container */
 }
 
-.title {
-    font-size: 24px;
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="email"],
+textarea {
     margin-bottom: 20px;
-    color: orange; /* Title color */
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    color: black; /* Black text for the input */
+    transition: border-color 0.3s ease; /* Smooth border transition */
 }
 
-input[type="email"], textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #ff8c00; /* Change border color on focus */
+    outline: none; /* Remove outline */
 }
 
 button {
-    background-color: orange; /* Button color */
-    color: white;
+    background-color: #ff8c00; /* Button color */
+    color: white; /* Button text color */
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 15px;
+    border-radius: 8px;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Button hover effects */
 }
 
 button:hover {
-    background-color: #d97b00; /* Darker orange on hover */
+    background-color: #ff5e00; /* Darken button color on hover */
+    transform: scale(1.05); /* Slightly enlarge button */
 }
 
-.confirmation-message, .wait-message {
-    margin-top: 15px;
-    font-size: 16px;
-    color: green; /* Color for confirmation message */
-    transition: opacity 0.5s ease;
+.message {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #ff8c00; /* Color for confirmation and wait messages */
+    opacity: 0;
+    animation: fadeIn 0.5s forwards; /* Fade-in animation for messages */
 }
 
-.slide-down {
-    animation: slideDown 0.5s ease forwards;
+#confirmation-message {
+    display: none; /* Hide initially */
 }
 
-@keyframes slideDown {
-    from {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+#wait-message {
+    display: none; /* Hide initially */
 }
