@@ -86,7 +86,7 @@ button:hover {
 
 /* Confirmation message styles */
 .confirmation {
-    display: none;
+    display: none; /* Hidden by default */
     align-items: center;
     justify-content: center;
     background-color: #d4edda; /* Light green background */
@@ -101,8 +101,7 @@ button:hover {
 }
 
 .confirmation.show {
-    display: flex;
-    opacity: 1;
+    opacity: 1; /* Fade-in effect */
 }
 
 /* Checkmark icon style */
