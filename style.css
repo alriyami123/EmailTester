@@ -1,38 +1,26 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #a3c2f2, #ff9a9e);
-}
-
-.container {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    width: 400px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to right, #4A90E2, #9013FE);
+    color: white;
+    text-align: center;
+    padding: 50px;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+    margin: 20px auto;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-input[type="email"],
-textarea {
-    margin-bottom: 10px;
+input, textarea {
+    width: 100%;
     padding: 10px;
+    margin: 10px 0;
     border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+    border: none;
 }
 
 button {
@@ -41,7 +29,6 @@ button {
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -51,30 +38,33 @@ button:hover {
 }
 
 .message {
-    margin-top: 10px;
-    padding: 10px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    padding: 15px;
     border-radius: 5px;
-    text-align: center;
-    font-size: 16px;
-    animation-duration: 0.5s;
-}
-
-#confirmation-message {
-    background-color: #dff0d8; /* Light green */
-    color: #3c763d; /* Dark green */
+    transition: all 0.5s;
+    z-index: 1000;
+    display: none;
 }
 
 #wait-message {
-    background-color: #f2dede; /* Light red */
-    color: #a94442; /* Dark red */
+    background-color: #dc3545; /* Red for wait message */
 }
 
-/* Animation for fade-in */
-.fade-in {
-    animation: fadeIn 0.5s ease-in-out;
+.slide-down {
+    animation: slide-down 0.5s forwards;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes slide-down {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
