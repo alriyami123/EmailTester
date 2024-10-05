@@ -12,23 +12,31 @@
         })();
 
         function sendEmail(event) {
-            event.preventDefault();
-            const userEmail = document.getElementById('email').value;
-            const messageContent = document.getElementById('message').value;
+            event.preventDefault(); // Prevent default form submission
+
+            const userEmail = document.getElementById('email').value; // Get the user's email
+            const messageContent = document.getElementById('message').value; // Get the user's message
 
             const templateParams = {
-                to_email: userEmail,
-                from_email: userEmail,
-                message: messageContent,
+                to_email: userEmail,    // User's email (recipient)
+                from_email: userEmail,  // User's email (sender)
+                message: messageContent, // User's message
             };
 
+            // Send email
             emailjs.send('Test', 'template_x0uf336', templateParams)
                 .then(function(response) {
                     console.log('Email sent successfully!', response);
-                    document.getElementById('confirmation-message').style.display = 'block';
+                    showConfirmationMessage(); // Show success message
                 }, function(error) {
                     console.error('Error sending email:', error);
+                    alert('Error sending email: ' + JSON.stringify(error));
                 });
+        }
+
+        function showConfirmationMessage() {
+            const confirmationMessage = document.getElementById('confirmation-message');
+            confirmationMessage.style.display = 'block'; // Show confirmation message
         }
     </script>
 </head>
