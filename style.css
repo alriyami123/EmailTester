@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #6a5acd, #00bfff); /* Multi-color background */
+    background: linear-gradient(135deg, #6a5acd, #00bfff, #ff7f50); /* Multi-color background */
     color: #fff;
     display: flex;
     justify-content: center;
@@ -11,43 +11,44 @@ body {
 
 .container {
     background: rgba(255, 255, 255, 0.1); /* Slightly transparent white */
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    max-width: 400px;
+    border-radius: 20px;
+    padding: 50px; /* Increased padding for larger form */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    max-width: 500px; /* Increased max width for a larger form */
     width: 100%;
     text-align: center;
 }
 
 h2 {
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* More space below the title */
+    font-size: 24px; /* Increased font size for the title */
 }
 
 input[type="email"], textarea {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
+    padding: 15px; /* Increased padding */
+    margin: 15px 0; /* More margin for spacing */
     border: none;
-    border-radius: 5px;
+    border-radius: 10px; /* More rounded corners */
 }
 
 button {
-    background-color: #00bfff;
+    background-color: #ff7f50; /* A different button color */
     color: #fff;
-    padding: 12px;
+    padding: 15px; /* Increased padding */
     border: none;
-    border-radius: 5px;
+    border-radius: 10px; /* More rounded corners */
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px; /* Increased font size */
 }
 
 button:hover {
-    background-color: #009ac1;
+    background-color: #e06e47; /* Darker color on hover */
 }
 
 .confirmation-message {
     margin-top: 20px;
-    font-size: 16px;
+    font-size: 18px; /* Increased font size */
     display: none; /* Hide by default */
     animation: fadeIn 0.5s ease-in; /* Fade-in effect for the confirmation message */
 }
