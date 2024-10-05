@@ -22,7 +22,7 @@
             // Check if the cooldown period is active
             if (currentTime - lastSentTime < cooldownTime) {
                 const remainingTime = Math.ceil((cooldownTime - (currentTime - lastSentTime)) / 1000); // Calculate remaining time in seconds
-                alert(`Please wait ${remainingTime} seconds before sending another message.`);
+                showWaitMessage(remainingTime);
                 return;
             }
 
@@ -30,25 +30,26 @@
             const messageContent = document.getElementById('message').value; // Get the user's message
 
             const templateParams = {
-                to_email: userEmail,
-                from_email: userEmail,
-                message: messageContent,
-                reply_to: userEmail,
+                to_email: userEmail,    // User's email (recipient)
+                from_email: userEmail,  // User's email (sender)
+                message: messageContent, // User's message
+                reply_to: userEmail,     // Set the reply-to field
             };
 
             const sendButton = document.getElementById('send-button');
-            sendButton.disabled = true; // Disable the button
+            sendButton.disabled = true;
 
             // Send email
             emailjs.send('Test', 'template_k1k0dm1', templateParams)
                 .then(function(response) {
                     console.log('Email sent successfully!', response);
-                    showConfirmationMessage();
+                    showConfirmationMessage(); // Call to show success message
 
-                    lastSentTime = new Date().getTime(); // Update last sent time
+                    lastSentTime = new Date().getTime(); // Update the last sent time
 
+                    // Re-enable the button after cooldown time
                     setTimeout(() => {
-                        sendButton.disabled = false; // Re-enable the button after cooldown time
+                        sendButton.disabled = false; // Re-enable the button
                     }, cooldownTime);
 
                 }, function(error) {
@@ -61,19 +62,27 @@
         function showConfirmationMessage() {
             const confirmationMessage = document.getElementById('confirmation-message');
             confirmationMessage.style.display = 'block'; // Show confirmation message
-            confirmationMessage.classList.add('slide-down'); // Add animation class
+        }
+
+        function showWaitMessage(seconds) {
+            const waitMessage = document.getElementById('wait-message');
+            waitMessage.textContent = `Please wait ${seconds} seconds before sending another message.`;
+            waitMessage.style.display = 'block'; // Show wait message
+            setTimeout(() => {
+                waitMessage.style.display = 'none'; // Hide wait message after 3 seconds
+            }, 3000);
         }
     </script>
 </head>
 <body>
     <div class="container">
-        <form onsubmit="sendEmail(event)" class="email-form">
-            <h2>Send a Message</h2>
+        <form onsubmit="sendEmail(event)">
             <input type="email" id="email" placeholder="Enter your email" required />
             <textarea id="message" placeholder="Enter your message" required></textarea>
-            <button id="send-button" type="submit">Send Email</button>
-            <div id="confirmation-message" class="confirmation-message">✔️ Email sent successfully!</div>
+            <button id="send-button" type="submit">Send Email</button> <!-- Added ID for button -->
         </form>
+        <div id="confirmation-message" class="message" style="display:none;">✔️ Email sent successfully!</div>
+        <div id="wait-message" class="message" style="display:none;"></div>
     </div>
 </body>
 </html>
