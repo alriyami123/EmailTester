@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #1e1e1e, #444444); /* Dark gradient background */
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Purple to blue gradient */
     color: #fff;
     margin: 0;
     padding: 0;
@@ -11,101 +11,24 @@ body {
 }
 
 .container {
-    background: rgba(255, 215, 0, 0.1); /* Gold tinted container */
-    border: 2px solid #ffd700; /* Gold border */
+    background: rgba(255, 255, 255, 0.1); /* Transparent white for contrast */
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Light border */
     border-radius: 15px;
     padding: 40px;
-    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4); /* Glowing effect with shadow */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Soft shadow */
     width: 80%;
-    max-width: 600px; /* Bigger form for a more impactful look */
+    max-width: 600px;
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .container:hover {
-    transform: scale(1.02); /* Slight grow effect on hover */
+    transform: scale(1.02);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4); /* Bigger glow on hover */
 }
 
 h1 {
-    color: #ffd700;
+    color: #fff;
     font-size: 36px;
     margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* Glowing title */
-}
-
-.email-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.email-form input,
-.email-form textarea,
-.email-form button {
-    margin: 15px 0;
-    padding: 20px;
-    border: none;
-    border-radius: 12px;
-    font-size: 18px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease;
-}
-
-.email-form input,
-.email-form textarea {
-    background: rgba(255, 255, 255, 0.15); /* Slightly transparent fields */
-    color: #ffd700; /* Gold text */
-    transition: background 0.3s, box-shadow 0.3s;
-}
-
-.email-form input:focus,
-.email-form textarea:focus {
-    background: rgba(255, 255, 255, 0.2); /* Lighter background on focus */
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.6); /* Subtle gold shadow on focus */
-    outline: none; /* Remove default outline */
-}
-
-.email-form button {
-    background: #ffd700;
-    color: #1e1e1e;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s, transform 0.2s;
-}
-
-.email-form button:hover {
-    background: #ffc107; /* Lighter gold on hover */
-    transform: translateY(-3px); /* Lift effect on hover */
-}
-
-.message {
-    margin-top: 20px;
-    font-size: 22px;
-    font-weight: bold;
-    display: none; /* Hidden by default */
-    padding: 15px;
-    border-radius: 12px;
-    background: rgba(255, 215, 0, 0.2); /* Gold background */
-    animation: slideDown 1s ease; /* Smooth slide down effect */
-}
-
-@keyframes slideDown {
-    from { transform: translateY(-100px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-#wait-message {
-    background: rgba(255, 204, 0, 0.8); /* Bright gold background for wait message */
-    color: #333; /* Dark text for contrast */
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 18px;
-    display: none;
-}
-
-.footer {
-    margin-top: 30px;
-    color: #aaa;
-    font-size: 14px;
-}
-
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7)
