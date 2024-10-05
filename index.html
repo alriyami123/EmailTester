@@ -4,56 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Sending Form</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to the CSS file -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
         (function(){
-            emailjs.init("Cy7XLzuKiesb8tEG2");
+            emailjs.init('Cy7XLzuKiesb8tEG2'); // Initialize with your User ID
         })();
-        
+
         function sendEmail(event) {
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault(); // Prevent default form submission
+
+            const userEmail = document.getElementById('email').value; // Get the user's email
+            const messageContent = document.getElementById('message').value; // Get the user's message
+
+            // Check if values are captured correctly
+            console.log("User Email:", userEmail);
+            console.log("Message Content:", messageContent);
 
             const templateParams = {
-                to_email: document.getElementById('email').value, // User's email
-                message: document.getElementById('message').value, // User's message
+                to_email: userEmail,    // User's email (recipient)
+                from_email: userEmail,  // User's email (sender)
+                message: messageContent, // User's message
             };
 
-            emailjs.send('Test', 'template_k1k0dm1', templateParams)
+            // Send email
+            emailjs.send('Test', 'template_x0uf336', templateParams)
                 .then(function(response) {
-                    showConfirmationMessage();
+                    console.log('Email sent successfully!', response);
+                    showConfirmationMessage(); // Call to show success message
                 }, function(error) {
+                    console.error('Error sending email:', error);
                     alert('Error sending email: ' + JSON.stringify(error));
                 });
         }
 
         function showConfirmationMessage() {
-            const confirmation = document.getElementById('confirmation');
-            confirmation.style.display = 'flex'; // Show the confirmation message
-            confirmation.classList.add('show');
-            setTimeout(() => {
-                confirmation.classList.remove('show');
-                confirmation.style.display = 'none'; // Hide after fading out
-            }, 3000); // Hide after 3 seconds
+            const confirmationMessage = document.getElementById('confirmation-message');
+            confirmationMessage.style.display = 'block'; // Show confirmation message
         }
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Send an Email</h1>
-        <form id="email-form" onsubmit="sendEmail(event)">
-            <label for="email">Your Email:</label>
-            <input type="email" id="email" name="email" required>
-            <br>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <br>
-            <button type="submit">Send Email</button>
-        </form>
-        <div id="confirmation" class="confirmation">
-            <span class="checkmark">✔️</span>
-            <span>Email sent successfully!</span>
-        </div>
-    </div>
+    <form onsubmit="sendEmail(event)">
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <textarea id="message" placeholder="Enter your message" required></textarea>
+        <button type="submit">Send Email</button>
+    </form>
+    <div id="confirmation-message" style="display:none;">✔️ Email sent successfully!</div>
 </body>
 </html>
