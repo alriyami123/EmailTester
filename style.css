@@ -45,8 +45,19 @@ button:hover {
     background-color: #009ac1;
 }
 
-#confirmation-message {
+.confirmation-message {
     margin-top: 20px;
     font-size: 16px;
     display: none; /* Hide by default */
+    animation: fadeIn 0.5s ease-in; /* Fade-in effect for the confirmation message */
+}
+
+/* Animation for the confirmation message */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
