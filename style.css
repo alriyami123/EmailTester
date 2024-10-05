@@ -1,76 +1,56 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Purple to blue gradient */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    font-family: 'Arial', sans-serif;
-    color: #333; /* Dark text color for contrast */
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.email-form {
-    background-color: white; /* White background for form */
-    padding: 30px;
-    border-radius: 10px;
+    background: white; /* White background for the form */
+    border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    padding: 40px;
+    width: 90%;
+    max-width: 500px;
     text-align: center;
 }
 
-.email-form h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #6a11cb; /* Purple for header */
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 input[type="email"],
 textarea {
-    width: 100%;
+    margin-bottom: 20px;
     padding: 15px;
-    margin: 10px 0;
-    border: 2px solid #6a11cb; /* Border color matches theme */
-    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 16px;
-    transition: border-color 0.3s;
-}
-
-input[type="email"]:focus,
-textarea:focus {
-    border-color: #2575fc; /* Blue border on focus */
-    outline: none; /* Remove default outline */
-}
-
-textarea {
-    height: 150px;
-    resize: none;
+    color: black; /* Black text for the input */
 }
 
 button {
-    background-color: #6a11cb; /* Purple button */
-    color: white;
-    padding: 15px;
+    background-color: #2575fc; /* Button color */
+    color: white; /* Button text color */
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
     font-size: 16px;
-    width: 100%;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #2575fc; /* Blue when hovering */
+    background-color: #6a11cb; /* Darken button color on hover */
 }
 
-.confirmation-message {
-    display: none;
+.message {
     margin-top: 20px;
     font-size: 18px;
-    color: #28a745
+    color: #2575fc; /* Color for confirmation and wait messages */
+}
