@@ -31,4 +31,74 @@ h1 {
     color: #fff;
     font-size: 36px;
     margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7)
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.email-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.email-form input,
+.email-form textarea,
+.email-form button {
+    margin: 15px 0;
+    padding: 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.email-form input,
+.email-form textarea {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.email-form input:focus,
+.email-form textarea:focus {
+    background: rgba(255, 255, 255, 0.3); /* Brighter focus */
+    box-shadow: 0 0 8px rgba(98, 0, 234, 0.7); /* Purple-blue glow on focus */
+    outline: none;
+}
+
+.email-form button {
+    background: #fff;
+    color: #6a11cb; /* Purple button text */
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.email-form button:hover {
+    background: #e1e1e1;
+    transform: translateY(-3px);
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    display: none;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+#wait-message {
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 18px;
+    display: none;
+}
