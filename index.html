@@ -13,7 +13,6 @@
 
         let lastSentTime = 0; // Track the last sent time
         const cooldownTime = 30000; // 30 seconds in milliseconds
-        let countdownInterval; // Variable to hold the countdown interval
 
         function sendEmail(event) {
             event.preventDefault(); // Prevent default form submission
@@ -53,14 +52,9 @@
 
                     lastSentTime = new Date().getTime(); // Update the last sent time
 
-                    // Start countdown
-                    startCountdown(cooldownTime / 1000); // Convert to seconds
-
                     // Re-enable the button after cooldown time
                     setTimeout(() => {
                         sendButton.disabled = false; // Re-enable the button
-                        clearInterval(countdownInterval); // Clear the countdown
-                        document.getElementById('countdown').innerText = ""; // Clear countdown display
                     }, cooldownTime);
 
                 }, function(error) {
@@ -68,21 +62,6 @@
                     alert('Error sending email: ' + JSON.stringify(error));
                     sendButton.disabled = false; // Re-enable the button on error
                 });
-        }
-
-        function startCountdown(seconds) {
-            let timeLeft = seconds;
-
-            // Update the countdown display every second
-            countdownInterval = setInterval(() => {
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    document.getElementById('countdown').innerText = ""; // Clear countdown display
-                } else {
-                    document.getElementById('countdown').innerText = `Wait for ${timeLeft} seconds left`; // Update countdown display
-                    timeLeft--;
-                }
-            }, 1000);
         }
 
         function showConfirmationMessage() {
@@ -97,7 +76,6 @@
         <textarea id="message" placeholder="Enter your message" required></textarea>
         <button id="send-button" type="submit">Send Email</button> <!-- Added ID for button -->
     </form>
-    <div id="countdown" style="color: red; margin-top: 10px;"></div> <!-- Countdown display -->
     <div id="confirmation-message" style="display:none;">✔️ Email sent successfully!</div>
 </body>
 </html>
