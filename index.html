@@ -15,8 +15,8 @@
             event.preventDefault(); // Prevent form submission
 
             const templateParams = {
-                to_email: document.getElementById('email').value,
-                message: document.getElementById('message').value,
+                to_email: document.getElementById('email').value, // User's email
+                message: document.getElementById('message').value, // User's message
             };
 
             emailjs.send('Test', 'template_x0uf336', templateParams)
