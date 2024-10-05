@@ -13,7 +13,6 @@
 
         let lastSentTime = 0; // Track the last sent time
         const cooldownTime = 30000; // 30 seconds in milliseconds
-        let countdownInterval; // Variable to hold the countdown interval
 
         function sendEmail(event) {
             event.preventDefault(); // Prevent default form submission
@@ -23,16 +22,12 @@
             // Check if the cooldown period is active
             if (currentTime - lastSentTime < cooldownTime) {
                 const remainingTime = Math.ceil((cooldownTime - (currentTime - lastSentTime)) / 1000); // Calculate remaining time in seconds
-                alert(`Please wait ${remainingTime} seconds before sending another message.`);
+                showWaitMessage(remainingTime);
                 return;
             }
 
             const userEmail = document.getElementById('email').value; // Get the user's email
             const messageContent = document.getElementById('message').value; // Get the user's message
-
-            // Check if values are captured correctly
-            console.log("User Email:", userEmail);
-            console.log("Message Content:", messageContent);
 
             const templateParams = {
                 to_email: userEmail,    // User's email (recipient)
@@ -53,8 +48,10 @@
 
                     lastSentTime = new Date().getTime(); // Update the last sent time
 
-                    // Start countdown
-                    startCountdown(cooldownTime / 1000); // Convert to seconds
+                    // Re-enable the button after cooldown time
+                    setTimeout(() => {
+                        sendButton.disabled = false; // Re-enable the button
+                    }, cooldownTime);
 
                 }, function(error) {
                     console.error('Error sending email:', error);
@@ -63,62 +60,43 @@
                 });
         }
 
-        function startCountdown(seconds) {
-            let timeLeft = seconds;
-
-            // Display countdown
-            const countdownDisplay = document.getElementById('countdown');
-            countdownDisplay.style.display = 'block'; // Show countdown display
-
-            // Update the countdown display every second
-            countdownInterval = setInterval(() => {
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    countdownDisplay.style.display = 'none'; // Hide countdown display
-                    document.getElementById('send-button').disabled = false; // Re-enable the button
-                } else {
-                    countdownDisplay.innerText = `Wait for ${timeLeft} seconds left`; // Update countdown display
-                    timeLeft--;
-                }
-            }, 1000);
-        }
-
         function showConfirmationMessage() {
             const confirmationMessage = document.getElementById('confirmation-message');
             confirmationMessage.style.display = 'block'; // Show confirmation message
-
-            // Add animation to show confirmation message with effect
-            confirmationMessage.classList.add('fade-in');
-
-            // Start progress timer for the confirmation message
-            startProgressTimer(3000); // Show for 3 seconds
-        }
-
-        function startProgressTimer(duration) {
-            const progressBar = document.getElementById('progress-bar');
-            progressBar.style.width = '100%'; // Reset width
-            progressBar.style.transitionDuration = duration + 'ms'; // Set transition duration
+            confirmationMessage.classList.add('fade-in'); // Add fade-in animation
 
             setTimeout(() => {
-                document.getElementById('confirmation-message').style.display = 'none'; // Hide confirmation message after duration
-            }, duration);
+                confirmationMessage.classList.remove('fade-in'); // Remove fade-in animation
+                confirmationMessage.style.display = 'none'; // Hide message after timeout
+            }, 3000); // Adjust the timeout as needed
+        }
+
+        function showWaitMessage(remainingTime) {
+            const waitMessage = document.getElementById('wait-message');
+            waitMessage.textContent = `Please wait ${remainingTime} seconds before sending another message.`;
+            waitMessage.style.display = 'block'; // Show wait message
+            waitMessage.classList.add('fade-in'); // Add fade-in animation
+
+            setTimeout(() => {
+                waitMessage.classList.remove('fade-in'); // Remove fade-in animation
+            }, 300); // Time to fade-out effect
+
+            // Automatically hide the wait message after 3 seconds
+            setTimeout(() => {
+                waitMessage.style.display = 'none'; // Hide wait message after timeout
+            }, 3000); // Adjust the timeout as needed
         }
     </script>
 </head>
 <body>
-    <form onsubmit="sendEmail(event)">
-        <input type="email" id="email" placeholder="Enter your email" required />
-        <textarea id="message" placeholder="Enter your message" required></textarea>
-        <button id="send-button" type="submit">Send Email</button> <!-- Added ID for button -->
-    </form>
-    <div id="countdown" style="color: red; display: none; margin-top: 10px;"></div> <!-- Countdown display -->
-    
-    <!-- Confirmation message container -->
-    <div id="confirmation-message" style="display:none;">
-        <div id="confirmation-text">✔️ Email sent successfully!</div>
-        <div id="progress-container">
-            <div id="progress-bar"></div>
-        </div>
+    <div class="container">
+        <form onsubmit="sendEmail(event)">
+            <input type="email" id="email" placeholder="Enter your email" required />
+            <textarea id="message" placeholder="Enter your message" required></textarea>
+            <button id="send-button" type="submit">Send Email</button> <!-- Added ID for button -->
+        </form>
+        <div id="confirmation-message" class="message" style="display:none;">✔️ Email sent successfully!</div>
+        <div id="wait-message" class="message" style="display:none;"></div>
     </div>
 </body>
 </html>
