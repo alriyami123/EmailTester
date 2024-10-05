@@ -29,10 +29,11 @@
 
         function showConfirmationMessage() {
             const confirmation = document.getElementById('confirmation');
-            confirmation.style.display = 'block';
+            confirmation.style.display = 'flex'; // Show the confirmation message
             confirmation.classList.add('show');
             setTimeout(() => {
                 confirmation.classList.remove('show');
+                confirmation.style.display = 'none'; // Hide after fading out
             }, 3000); // Hide after 3 seconds
         }
     </script>
