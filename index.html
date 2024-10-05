@@ -4,24 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Sending Form</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the CSS file -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
-        // Initialize EmailJS with your public key
         (function(){
-            emailjs.init("Cy7XLzuKiesb8tEG2"); // Replace with your actual User ID
+            emailjs.init("Cy7XLzuKiesb8tEG2");
         })();
         
         function sendEmail(event) {
             event.preventDefault(); // Prevent form submission
 
-            // Get form values
             const templateParams = {
                 to_email: document.getElementById('email').value,
                 message: document.getElementById('message').value,
             };
 
-            // Send email
-            emailjs.send('Test', 'template_x0uf336', templateParams) // Use your Service ID and Template ID
+            emailjs.send('Test', 'template_x0uf336', templateParams)
                 .then(function(response) {
                     alert('Email sent successfully!');
                 }, function(error) {
@@ -31,15 +29,17 @@
     </script>
 </head>
 <body>
-    <h1>Send an Email</h1>
-    <form id="email-form" onsubmit="sendEmail(event)">
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
-        <br>
-        <button type="submit">Send Email</button>
-    </form>
+    <div class="container">
+        <h1>Send an Email</h1>
+        <form id="email-form" onsubmit="sendEmail(event)">
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <br>
+            <button type="submit">Send Email</button>
+        </form>
+    </div>
 </body>
 </html>
