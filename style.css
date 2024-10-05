@@ -1,7 +1,8 @@
+/* Background and Body Styling */
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #6a11cb, #2575fc); /* Purple to blue gradient */
-    color: #fff;
+    color: #333; /* Dark text for readability */
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,73 +11,78 @@ body {
     height: 100vh;
 }
 
+/* Container Styling */
 .container {
-    background: rgba(255, 255, 255, 0.1); /* Transparent white for contrast */
-    border: 2px solid rgba(255, 255, 255, 0.2); /* Light border */
+    background: #fff; /* White background for form */
     border-radius: 15px;
     padding: 40px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
     width: 80%;
     max-width: 600px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Hover Effect for Container */
 .container:hover {
     transform: scale(1.02);
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4); /* Bigger glow on hover */
 }
 
+/* Title Styling */
 h1 {
-    color: #fff;
+    color: #6a11cb; /* Purple title for contrast */
     font-size: 36px;
     margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
 }
 
+/* Form Styling */
 .email-form {
     display: flex;
     flex-direction: column;
 }
 
-.email-form input,
-.email-form textarea,
-.email-form button {
-    margin: 15px 0;
-    padding: 20px;
-    border: none;
-    border-radius: 12px;
-    font-size: 18px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease, background 0.3s ease;
-}
-
+/* Input and Textarea Styling */
 .email-form input,
 .email-form textarea {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    margin: 15px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 18px;
+    color: #333; /* Dark text */
+    background: #f9f9f9; /* Light background for inputs */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Focus Styles for Inputs */
 .email-form input:focus,
 .email-form textarea:focus {
-    background: rgba(255, 255, 255, 0.3); /* Brighter focus */
+    background: #fff; /* Brighter focus */
     box-shadow: 0 0 8px rgba(98, 0, 234, 0.7); /* Purple-blue glow on focus */
     outline: none;
 }
 
+/* Button Styling */
 .email-form button {
-    background: #fff;
-    color: #6a11cb; /* Purple button text */
+    background: #6a11cb; /* Purple button */
+    color: #fff;
     cursor: pointer;
+    padding: 15px;
+    font-size: 18px;
     font-weight: bold;
-    transition: background 0.3s, transform 0.2s;
+    border: none;
+    border-radius: 12px;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
+/* Hover Effect for Button */
 .email-form button:hover {
-    background: #e1e1e1;
+    background: #7d22d8; /* Darker purple on hover */
     transform: translateY(-3px);
 }
 
+/* Message Styling */
 .message {
     margin-top: 20px;
     font-size: 22px;
@@ -85,17 +91,19 @@ h1 {
     padding: 15px;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.3);
-    color: #fff;
+    color: #6a11cb; /* Purple for messages */
 }
 
+/* Slide Down Animation */
 @keyframes slideDown {
     from { transform: translateY(-100px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
 
+/* Wait Message Styling */
 #wait-message {
-    background: rgba(255, 255, 255, 0.3);
-    color: #fff;
+    background: rgba(0, 0, 0, 0.1); /* Light gray for the wait message */
+    color: #333; /* Dark text */
     margin-top: 10px;
     padding: 10px;
     border-radius: 8px;
