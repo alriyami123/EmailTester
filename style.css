@@ -1,112 +1,75 @@
-/* Background and Body Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Purple to blue gradient */
-    color: #333; /* Dark text for readability */
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Purple and blue gradient background */
     margin: 0;
     padding: 0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
-/* Container Styling */
-.container {
-    background: #fff; /* White background for form */
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
-    width: 80%;
-    max-width: 600px;
+form {
+    background-color: #f7f7f7; /* Light grey for form background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 100%;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover Effect for Container */
-.container:hover {
-    transform: scale(1.02);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4); /* Bigger glow on hover */
-}
-
-/* Title Styling */
-h1 {
-    color: #6a11cb; /* Purple title for contrast */
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-/* Form Styling */
-.email-form {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Input and Textarea Styling */
-.email-form input,
-.email-form textarea {
-    margin: 15px 0;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    font-size: 18px;
-    color: #333; /* Dark text */
-    background: #f9f9f9; /* Light background for inputs */
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Focus Styles for Inputs */
-.email-form input:focus,
-.email-form textarea:focus {
-    background: #fff; /* Brighter focus */
-    box-shadow: 0 0 8px rgba(98, 0, 234, 0.7); /* Purple-blue glow on focus */
-    outline: none;
-}
-
-/* Button Styling */
-.email-form button {
-    background: #6a11cb; /* Purple button */
-    color: #fff;
-    cursor: pointer;
-    padding: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    border-radius: 12px;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-/* Hover Effect for Button */
-.email-form button:hover {
-    background: #7d22d8; /* Darker purple on hover */
-    transform: translateY(-3px);
-}
-
-/* Message Styling */
-.message {
-    margin-top: 20px;
-    font-size: 22px;
-    font-weight: bold;
-    display: none;
-    padding: 15px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.3);
-    color: #6a11cb; /* Purple for messages */
-}
-
-/* Slide Down Animation */
-@keyframes slideDown {
-    from { transform: translateY(-100px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-/* Wait Message Styling */
-#wait-message {
-    background: rgba(0, 0, 0, 0.1); /* Light gray for the wait message */
-    color: #333; /* Dark text */
-    margin-top: 10px;
+input[type="email"],
+textarea {
+    width: 100%;
     padding: 10px;
-    border-radius: 8px;
-    font-size: 18px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: black; /* Text color set to black */
+}
+
+textarea {
+    height: 150px;
+    resize: none;
+}
+
+button {
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green when hovering */
+}
+
+#confirmation-message {
     display: none;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #28a745; /* Green for success */
+    background-color: #d4edda; /* Light green background */
+    border-left: 5px solid #28a745;
+    padding: 15px;
+    border-radius: 5px;
+    animation: slideDown 0.5s ease-out;
+}
+
+/* Animation for the confirmation message */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
